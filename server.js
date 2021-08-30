@@ -39,18 +39,16 @@ const getReply = (question, condition) => {
   let rating = sentiment.analyze(question);
   console.log(rating);
   if (condition === 'biased') {
-    switch(rating) {
-      case (rating.score > 0):
-        console.log('positive')
+      if (rating.score > 0){
         return {'reading': positive[(Math.floor(Math.random() * positive.length))], 'question': question, 'sentiment': rating}
-      case (rating.score < 0):
-        console.log('negaitve')
+      }
+      else if (rating.score < 0){
         return {'reading': negative[(Math.floor(Math.random() * negative.length))], 'question': question, 'sentiment': rating}
-      default:
-        console.log('neutral')
+      }
+      else {
         return {'reading': neutral[(Math.floor(Math.random() * neutral.length))], 'question': question, 'sentiment': rating}
+      } 
     }
-  }
   else {
     let allResponses = positive.concat(negative, neutral);
     return {'reading': allResponses[(Math.floor(Math.random() * allResponses.length))], 'question': question}
