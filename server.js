@@ -39,9 +39,9 @@ const getReply = (question, condition) => {
   let rating = sentiment.analyze(question);
   if (condition === 'biased') {
     switch(rating) {
-      case rating > 0:
+      case rating.score > 0:
         return {'reading': positive[(Math.floor(Math.random() * positive.length))], 'question': question, 'sentiment': rating}
-      case rating < 0:
+      case rating.score < 0:
         return {'reading': negative[(Math.floor(Math.random() * negative.length))], 'question': question, 'sentiment': rating}
       default:
         return {'reading': neutral[(Math.floor(Math.random() * neutral.length))], 'question': question, 'sentiment': rating}
