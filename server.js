@@ -56,16 +56,15 @@ const getReply = (question, condition) => {
 }
 
 app.get('/api/v1/biased', async (req, res) => {
-  console.log('request recieved');
-  console.log(req.query.q);
   let response = getReply(req.query.q, 'biased')
   res.json(response)
 });
-app.get('/api/v1/unbiased', async (req, res) => {
-  console.log('request recieved');
-  console.log(req.query.q);
+app.get('/api/v1', async (req, res) => {
   let response = getReply(req.query.q, 'unbiased')
   res.json(response)
+});
+app.get('*', function(req, res){
+  res.send('Invalid endpoint', 404);
 });
 
 app.listen(PORT, () => {
