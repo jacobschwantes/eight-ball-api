@@ -41,13 +41,13 @@ const getReply = (question, condition) => {
   if (condition === 'biased') {
     switch(rating) {
       case (rating.score > 0):
-        console.log(question, condition, rating.score)
+        console.log('positive')
         return {'reading': positive[(Math.floor(Math.random() * positive.length))], 'question': question, 'sentiment': rating}
       case (rating.score < 0):
-        console.log(question, condition, rating.score)
+        console.log('negaitve')
         return {'reading': negative[(Math.floor(Math.random() * negative.length))], 'question': question, 'sentiment': rating}
       default:
-        console.log(question, condition, rating.score)
+        console.log('neutral')
         return {'reading': neutral[(Math.floor(Math.random() * neutral.length))], 'question': question, 'sentiment': rating}
     }
   }
