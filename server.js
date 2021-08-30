@@ -37,13 +37,17 @@ const negative = [
 
 const getReply = (question, condition) => {
   let rating = sentiment.analyze(question);
+  console.log(rating);
   if (condition === 'biased') {
     switch(rating) {
-      case rating.score > 0:
+      case (rating.score > 0):
+        console.log(question, condition, rating.score)
         return {'reading': positive[(Math.floor(Math.random() * positive.length))], 'question': question, 'sentiment': rating}
-      case rating.score < 0:
+      case (rating.score < 0):
+        console.log(question, condition, rating.score)
         return {'reading': negative[(Math.floor(Math.random() * negative.length))], 'question': question, 'sentiment': rating}
       default:
+        console.log(question, condition, rating.score)
         return {'reading': neutral[(Math.floor(Math.random() * neutral.length))], 'question': question, 'sentiment': rating}
     }
   }
@@ -57,13 +61,13 @@ app.get('/api/v1/biased', async (req, res) => {
   console.log('request recieved');
   console.log(req.query.q);
   let response = getReply(req.query.q, 'biased')
-  res.json({response: response})
+  res.json(response)
 });
 app.get('/api/v1/unbiased', async (req, res) => {
   console.log('request recieved');
   console.log(req.query.q);
   let response = getReply(req.query.q, 'unbiased')
-  res.json({response: response})
+  res.json(response)
 });
 
 app.listen(PORT, () => {
