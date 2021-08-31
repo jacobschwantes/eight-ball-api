@@ -4,7 +4,7 @@ export default function Demo() {
   const [res, setRes] = useState("");
   const [question, setQuestion] = useState("");
   const getResponse = async (question) => {
-    await fetch(`api/biased?q=${question}`)
+    await fetch(`api/?biased=true&q=${question}`)
       .then((response) => response.json())
       .then((data) => {
         setRes(data.reading);
