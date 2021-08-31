@@ -23,61 +23,60 @@ const exampleRandom = {
 
 export default function Home() {
   return (
-    <div className="bg-black min-h-screen w-screen overflow-x-hidden flex   justify-center  lg:p-10 py-4 px-1">
+    <div className="bg-gray-100 min-h-screen w-screen overflow-x-hidden flex   justify-center  lg:p-10 py-4 px-1">
       <Head>
         <title>8ball API</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <div className="lg:max-w-5xl w-full flex-grow flex flex-col">
         <div className="flex flex-col items-center">
-          <h1 className="text-white font-bold text-5xl">8 Ball</h1>
-          <h1 className="text-white text-xl mt-3">An API</h1>
+          <h1 className="text-gray-900 font-bold text-5xl">8Ball API</h1>
         </div>
-        <h1 className="text-white text-xl">Random reading:</h1>
-        <div className="w-full bg-gray-700 rounded-lg flex items-center">
+        <h1 className="text-gray-900 text-xl">Random reading:</h1>
+        <div className="w-full bg-gray-300 rounded-lg flex items-center">
           <a
             href="https://www.eightballapi.com/api/"
-            className="text-white text-2xl p-4"
+            className="text-gray-900 text-xl p-4"
           >
-            https://eightballapi.com/api/
+            <code>https://eightballapi.com/api/</code>
           </a>
         </div>
-        <h1 className="text-white ">
+        <h1 className="text-gray-900 ">
           Send a GET request to this endpoint and it returns a random 8ball
           response message.
         </h1>
-        <h1 className="text-white text-xl mt-4">Example response:</h1>
-        <div className="w-full bg-gray-700 rounded-lg flex items-center">
-          <p className="text-white text-xl p-4 ">
+        <h1 className="text-gray-900 text-xl mt-4">Example response:</h1>
+        <div className="w-full bg-gray-300 rounded-lg flex items-center">
+          <p className="text-gray-900 text-xl p-4 ">
             <code>{JSON.stringify(exampleRandom)}</code>
           </p>
         </div>
-        <h1 className="text-white text-xl mt-4">Biased reading:</h1>
-        <div className="w-full bg-gray-700 rounded-lg  flex items-center ">
+        <h1 className="text-gray-900 text-xl mt-4">Biased reading:</h1>
+        <div className="w-full bg-gray-300 rounded-lg  flex items-center ">
           <a
             href="https://www.eightballapi.com/api?biased=true&q=will+i+win+the+lottery"
-            className="text-white text-2xl p-4"
+            className="text-gray-900 text-xl p-4"
           >
-            https://eightballapi.com/api?biased=true&q=will+i+win+the+lottery
+            <code>https://eightballapi.com/api?biased=true&q=your_question_here</code>
           </a>
         </div>
-        <h1 className="text-white ">
+        <h1 className="text-gray-900 ">
           Send a GET request to this endpoint with a question and it will return
           a biased response. If the question has positive sentiment, it will
           return a positive response. Negative sentiment, negative response. You
           must add <span className="italic">biased=true</span> and{" "}
           <span className="italic">q</span> parameters to your request.
         </h1>
-        <h1 className="text-white text-xl mt-4">Example response:</h1>
-        <div className="w-full bg-gray-700 rounded-lg flex items-center">
-          <p className="text-white text-xl p-4 break-words">
+        <h1 className="text-gray-900 text-xl mt-4">Example response:</h1>
+        <div className="w-full bg-gray-300 rounded-lg flex items-center">
+          <p className="text-gray-900 text-lg p-4 break-words">
             <code>{JSON.stringify(exampleBiased)}</code>
           </p>
         </div>{" "}
         <footer className=" mt-5 flex justify-between">
           <a
             href
-            className="dark:text-white text-white transition-colors"
+            className="dark:text-gray-900 text-gray-900 transition-colors"
             target="_blank"
             rel="noreferrer"
             href="https://github.com/j-sch23/magic-eight-ball-api"
@@ -93,7 +92,7 @@ export default function Home() {
             </svg>
           </a>
           <Link href="/demo">
-            <a className=" font-bold  dark:text-white text-white transition-colors">
+            <a className=" font-bold  dark:text-gray-900 text-gray-900 transition-colors">
               Demo
             </a>
           </Link>

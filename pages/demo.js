@@ -19,12 +19,12 @@ export default function Demo() {
     setQuestion(e.target.value);
   };
   return (
-    <div className="bg-black h-screen flex flex-col justify-center items-center">
+    <div className="bg-gray-100 h-screen flex flex-col justify-center items-center">
       <Head>
         <title>8ball Demo</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
-      <h1 className="font-bold text-white  text-5xl mb-5">Magic 8-ball</h1>
+      <h1 className="font-bold text-gray-900  text-5xl mb-5">Magic 8-ball</h1>
       <form onSubmit={handleSubmit}>
         <div className="flex">
           <div>
@@ -52,7 +52,7 @@ export default function Demo() {
           </button>
         </div>
       </form>
-      <div className=" text-white text-xl italic">{res}</div>
+      <div className=" text-gray-900 text-xl italic">{res}</div>
     </div>
   );
 }
