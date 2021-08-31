@@ -37,7 +37,6 @@ const negative = [
 
 const getReply = (question, condition) => {
   let rating = sentiment.analyze(question);
-  console.log(rating);
   if (condition === 'biased') {
       if (rating.score > 0){
         return {'reading': positive[(Math.floor(Math.random() * positive.length))], 'question': question, 'sentiment': rating}
@@ -62,9 +61,6 @@ app.get('/api/v1/biased', async (req, res) => {
 app.get('/api/v1', async (req, res) => {
   let response = getReply(req.query.q, 'unbiased')
   res.json(response)
-});
-app.get('*', function(req, res){
-  res.send('Invalid endpoint', 404);
 });
 
 app.listen(PORT, () => {
