@@ -7,7 +7,7 @@ export default function Demo() {
     await fetch(`api/biased?q=${question}`)
       .then((response) => response.json())
       .then((data) => {
-        setRes(data.response.reading);
+        setRes(data.reading);
       })
       .catch((err) => alert(err));
   };
@@ -20,6 +20,10 @@ export default function Demo() {
   };
   return (
     <div className="bg-black h-screen flex flex-col justify-center items-center">
+      <Head>
+        <title>8ball Demo</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      </Head>
       <h1 className="font-bold text-white  text-5xl mb-5">Magic 8-ball</h1>
       <form onSubmit={handleSubmit}>
         <div className="flex">

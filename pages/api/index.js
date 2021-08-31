@@ -51,7 +51,13 @@ export const getReply = (question, condition) => {
 
 
 export default function handler(req, res) {
-    let response = getReply(req.query.q, 'biased')
+    let response;
+    if (req.query.biased) {
+        response = getReply(req.query.q, 'biased')
+    }
+    else {
+        response = getReply(req.query.q, 'unbiased')
+    }
     res.setHeader('Content-Type', 'application/json');
-    res.json({ response });
+    res.json(response);
   }
