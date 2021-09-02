@@ -23,20 +23,20 @@ const exampleRandom = {
 
 export default function Home() {
   return (
-    <div className="bg-gray-100 min-h-screen w-screen overflow-x-hidden flex   justify-center  lg:p-10 py-4 px-1">
+    <div className="bg-gray-100 min-h-screen  flex   justify-center  lg:p-10 py-4 px-2 ">
       <Head>
         <title>8ball API</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
-      <div className="lg:max-w-5xl w-full flex-grow flex flex-col">
-        <div className="flex flex-col items-center">
+      <div className="lg:max-w-5xl max-w-screen  overflow-x-hidden flex-grow flex flex-col">
+        <div className="flex flex-col items-center mb-2">
           <h1 className="text-gray-900 font-bold text-5xl">8Ball API</h1>
         </div>
         <h1 className="text-gray-900 text-xl">Random reading:</h1>
-        <div className="w-full bg-gray-300 rounded-lg flex items-center">
+        <div className="w-full bg-gray-300 rounded-lg flex items-center p-1 overflow-x-scroll scrollbar-hide">
           <a
             href="https://www.eightballapi.com/api/"
-            className="text-gray-900 text-xl p-4"
+            className="text-gray-900 text-xl "
           >
             <code>https://eightballapi.com/api/</code>
           </a>
@@ -46,16 +46,16 @@ export default function Home() {
           response message.
         </h1>
         <h1 className="text-gray-900 text-xl mt-4">Example response:</h1>
-        <div className="w-full bg-gray-300 rounded-lg flex items-center">
-          <p className="text-gray-900 text-xl p-4 ">
-            <code>{JSON.stringify(exampleRandom)}</code>
-          </p>
+        <div className="w-full bg-gray-300 rounded-lg flex items-center p-1">
+          <pre className="text-gray-900 text-lg overflow-x-scroll scrollbar-hide">
+            <code>{JSON.stringify(exampleRandom, null, 2)}</code>
+          </pre>
         </div>
         <h1 className="text-gray-900 text-xl mt-4">Biased reading:</h1>
-        <div className="w-full bg-gray-300 rounded-lg  flex items-center ">
+        <div className="w-full bg-gray-300 rounded-lg  flex items-center overflow-x-scroll scrollbar-hide">
           <a
             href="https://www.eightballapi.com/api?biased=true&q=will+i+win+the+lottery"
-            className="text-gray-900 text-xl p-4"
+            className="text-gray-900 text-xl p-1"
           >
             <code>https://eightballapi.com/api?biased=true&q=your_question_here</code>
           </a>
@@ -68,10 +68,10 @@ export default function Home() {
           <span className="italic">q</span> parameters to your request.
         </h1>
         <h1 className="text-gray-900 text-xl mt-4">Example response:</h1>
-        <div className="w-full bg-gray-300 rounded-lg flex items-center">
-          <p className="text-gray-900 text-lg p-4 break-words">
-            <code>{JSON.stringify(exampleBiased)}</code>
-          </p>
+        <div className="w-full bg-gray-300 rounded-lg flex items-center p-1 overflow-x-scroll scrollbar-hide">
+          <pre className="text-gray-900 text-lg">
+            <code>{JSON.stringify(exampleBiased, null, 1)}</code>
+          </pre>
         </div>{" "}
         <footer className=" mt-5 flex justify-between">
           <a
