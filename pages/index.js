@@ -1,103 +1,113 @@
 import Head from "next/head";
-import Link from "next/link";
-const exampleBiased = {
-  reading: "It is decidedly so.",
-  question: "Will I win the lottery",
-  sentiment: {
-    score: 4,
-    comparative: 0.8,
-    calculation: [
-      {
-        win: 4,
-      },
-    ],
-    tokens: ["will", "i", "win", "the", "lottery"],
-    words: ["win"],
-    positive: ["win"],
-    negative: [],
-  },
-};
-const exampleRandom = {
-  reading: "Reply hazy, try again.",
-};
-
+import { useState, useEffect } from "react";
+import BasicInput from "../components/BasicInput";
+import Navigation from "../components/Navigation";
+import Footer from "../components/Footer";
+import CTA from "../components/CTA";
+import Toggle from "../components/Toggle";
 export default function Home() {
+  const [question, setQuestion] = useState("Will I win the lottery");
+  const [lucky, setLucky] = useState(false);
+  const [biased, setBiased] = useState(true);
+  const [query, setQuery] = useState(
+    `https://eightballapi.vercel.app/api/biased`
+  );
+  useEffect(() => {
+    assembleQuery();
+  }, [question, lucky, biased]);
+
+  const updateOptions = (option, bool) => {
+    switch (option) {
+      case "lucky":
+        setLucky(bool);
+        break;
+      default:
+        break;
+    }
+  };
+
+  const assembleQuery = () => {
+    let formatQuestion = question.replace(/ /g, "+");
+    let newQuery = `https://eightballapi.vercel.app/api?question=${formatQuestion}`;
+    newQuery += `&lucky=${lucky}`;
+    setQuery(newQuery);
+  };
+
   return (
-    <div className="bg-gray-100 min-h-screen  flex   justify-center  lg:p-10 py-4 px-2 ">
+    <div className="flex flex-col  min-h-screen  bg-gray-50">
+      <Navigation active="Home" />
       <Head>
-        <title>8ball API</title>
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <title>8Ball API</title>
+        <link rel="icon" href="favicon.ico" />
       </Head>
-      <div className="lg:max-w-5xl max-w-screen  overflow-x-hidden flex-grow flex flex-col">
-        <div className="flex flex-col items-center mb-2">
-          <h1 className="text-gray-900 font-bold text-5xl">8Ball API</h1>
-        </div>
-        <h1 className="text-gray-900 text-xl">Random reading:</h1>
-        <div className="w-full bg-gray-300 rounded-lg flex items-center p-1 overflow-x-scroll scrollbar-hide">
-          <a
-            href="https://www.eightballapi.com/api/"
-            className="text-gray-900 text-xl "
-          >
-            <code>https://eightballapi.com/api/</code>
-          </a>
-        </div>
-        <h1 className="text-gray-900 ">
-          Send a GET request to this endpoint and it returns a random 8ball
-          response message.
-        </h1>
-        <h1 className="text-gray-900 text-xl mt-4">Example response:</h1>
-        <div className="w-full bg-gray-300 rounded-lg flex items-center p-1">
-          <pre className="text-gray-900 text-lg overflow-x-scroll scrollbar-hide">
-            <code>{JSON.stringify(exampleRandom, null, 2)}</code>
-          </pre>
-        </div>
-        <h1 className="text-gray-900 text-xl mt-4">Biased reading:</h1>
-        <div className="w-full bg-gray-300 rounded-lg  flex items-center overflow-x-scroll scrollbar-hide">
-          <a
-            href="https://www.eightballapi.com/api?biased=true&q=will+i+win+the+lottery"
-            className="text-gray-900 text-xl p-1"
-          >
-            <code>https://eightballapi.com/api?biased=true&q=your_question_here</code>
-          </a>
-        </div>
-        <h1 className="text-gray-900 ">
-          Send a GET request to this endpoint with a question and it will return
-          a biased response. If the question has positive sentiment, it will
-          return a positive response. Negative sentiment, negative response. You
-          must add <span className="italic">biased=true</span> and{" "}
-          <span className="italic">q</span> parameters to your request.
-        </h1>
-        <h1 className="text-gray-900 text-xl mt-4">Example response:</h1>
-        <div className="w-full bg-gray-300 rounded-lg flex items-center p-1 overflow-x-scroll scrollbar-hide">
-          <pre className="text-gray-900 text-lg">
-            <code>{JSON.stringify(exampleBiased, null, 1)}</code>
-          </pre>
-        </div>{" "}
-        <footer className=" mt-5 flex justify-between">
-          <a
-            href
-            className="dark:text-gray-900 text-gray-900 transition-colors"
-            target="_blank"
-            rel="noreferrer"
-            href="https://github.com/j-sch23/magic-eight-ball-api"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="currentColor"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
+      <CTA />
+
+      <div
+        id="demo"
+        className="max-w-6xl mx-auto flex flex-col items-center  py-16 sm:py-24 lg:py-32  "
+      >
+        <h2 className="text-base text-lime-600 font-semibold tracking-wide uppercase">
+          LIVE DEMO
+        </h2>
+        <p className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl mb-6">
+          Build your API query
+        </p>
+        <div className=" max-w-7xl w-auto  bg-gray-100 p-5 border rounded-lg transition-transform space-y-5 flex flex-col">
+          <BasicInput
+            label="Question"
+            value={question}
+            placeholder="Will I win the lottery"
+            update={setQuestion}
+          />
+
+          <Toggle
+            enabled={lucky}
+            setEnabled={setLucky}
+            head="Lucky"
+            description='Reading will likely be prefered or "lucky".'
+          />
+          <span>
+            <label
+              htmlFor="about"
+              className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2 "
             >
-              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-            </svg>
-          </a>
-          <Link href="/demo">
-            <a className=" font-bold  dark:text-gray-900 text-gray-900 transition-colors">
-              Demo
-            </a>
-          </Link>
-        </footer>
+              Your API query
+            </label>
+            <div className="mt-1 ">
+              <textarea
+                value={query}
+                readOnly
+                id="about"
+                name="about"
+                rows={3}
+                className=" shadow-sm block w-full focus:ring-lime-500 focus:border-lime-500 sm:text-sm border border-gray-300 rounded-md"
+              />
+            </div>
+          </span>
+
+          <div className="justify-between flex mt-4 space-x-2">
+            <button
+              onClick={() => {
+                navigator.clipboard.writeText(query);
+              }}
+              type="button"
+              className="inline-flex items-center px-2.5 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-gray-100 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-lime-500"
+            >
+              Copy URL to Clipboard
+            </button>
+            <button
+              onClick={() => {
+                window.open(query);
+              }}
+              className=" inline-flex items-center px-2.5 py-2 border border-transparent text-sm font-medium tracking-wide rounded-md shadow-sm text-white bg-lime-600 hover:bg-lime-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-lime-500"
+            >
+              Get Reading
+            </button>
+          </div>
+        </div>
       </div>
+
+      <Footer />
     </div>
   );
 }
