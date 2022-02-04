@@ -28,7 +28,7 @@ export default function Home() {
 
   const assembleQuery = () => {
     let formatQuestion = question.replace(/ /g, "+");
-    let newQuery = `https://eightballapi.vercel.app/api?question=${formatQuestion}`;
+    let newQuery = `https://eightballapi.vercel.app/api/biased?question=${formatQuestion}`;
     newQuery += `&lucky=${lucky}`;
     setQuery(newQuery);
   };
