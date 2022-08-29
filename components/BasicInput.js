@@ -5,6 +5,7 @@ export default function BasicInput(props) {
         {props.label}
       </label>
       <input
+        required={props.required}
         onChange={(e) => props.update(e.target.value)}
         type="text"
         name="name"
@@ -13,5 +14,5 @@ export default function BasicInput(props) {
         placeholder={props.placeholder}
       />
     </div>
-  )
+  );
 }
