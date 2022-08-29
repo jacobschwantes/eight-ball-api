@@ -10,7 +10,7 @@ const endpoints = [
       
       // More params...
     ],
-    example_request: "https://eightballapi.vercel.app/api",
+    example_request: "https://eightballapi.com/api",
     example_response: { reading: "Reply hazy, try again.", },
     short_description: "responds with a random reading",
     body: "Returns a random fortune reading.",
@@ -34,7 +34,7 @@ const endpoints = [
       
       // More params...
     ],
-    example_request: "https://eightballapi.vercel.app/api/biased?q=will+i+win+the+lottery",
+    example_request: "https://eightballapi.com/api/biased?q=will+i+win+the+lottery",
     example_response: {
       reading: "It is decidedly so.",
       question: "will i win the lottery",
@@ -79,10 +79,10 @@ export default function Docs() {
                 1.0.0
               </span>
 
-              <code className="text-sm">Base URL: eightballapi.vercel.app/api</code>
+              <code className="text-sm">Base URL: eightballapi.com/api</code>
               <p>An API for getting random or biased fortune readings.</p>
               <a
-                href="mailto:developer@jasch.dev"
+                href="mailto:contact@jacobschwantes.com"
                 target="_blank"
                 rel="noopener"
                 className=" text-indigo-600 pb-2"
