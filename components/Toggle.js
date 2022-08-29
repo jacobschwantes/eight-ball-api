@@ -8,7 +8,7 @@ function classNames(...classes) {
 export default function Toggle(props) {
 
   return (
-    <Switch.Group as="div" className="flex items-center justify-between space-x-4 mt-2">
+    <Switch.Group as="div" className="flex items-center justify-between space-x-4">
       <span className="flex-grow flex flex-col">
         <Switch.Label as="span" className="text-sm font-medium text-gray-900" passive>
           {props.head}
