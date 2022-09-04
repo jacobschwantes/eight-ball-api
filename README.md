@@ -1,29 +1,41 @@
-# Next.js + Tailwind CSS Example
+![Frame](https://i.imgur.com/bsbyKHe.png)
+# Eight Ball API
+This is a simple web app that uses  [next-tailwind-api-template](https://github.com/jacobschwantes/next-tailwind-api-template) as a base to create a simple API with documentation for getting magic-eight-ball responses.
 
-This example shows how to use [Tailwind CSS](https://tailwindcss.com/) [(v2.2)](https://blog.tailwindcss.com/tailwindcss-2-2) with Next.js. It follows the steps outlined in the official [Tailwind docs](https://tailwindcss.com/docs/guides/nextjs).
+It uses [sentiment](https://www.npmjs.com/package/sentiment) to analyze positive/negative sentiment to determine a biased response.
 
-It uses the new [`Just-in-Time Mode`](https://tailwindcss.com/docs/just-in-time-mode) for Tailwind CSS.
+# Features
 
-## Preview
+Get fortune readings:
 
-Preview the example live on [StackBlitz](http://stackblitz.com/):
+- Random readings
+- Biased readings using basic sentiment analysis
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/with-tailwindcss)
-
+# Getting Started
 ## Deploy your own
 
 Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-tailwindcss&project-name=with-tailwindcss&repository-name=with-tailwindcss)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/jacobschwantes/eight-ball-api)
+ 
+
+Alternatively you can set up a local development environment.
 
 ## How to use
 
 Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
 
 ```bash
-npx create-next-app --example with-tailwindcss with-tailwindcss-app
-# or
-yarn create next-app --example with-tailwindcss with-tailwindcss-app
+git clone https://github.com/jacobschwantes/eight-ball-api eight-ball-api
+npm install
+npm run dev
 ```
+# Contributing
 
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+## Create a bug report
+
+If you see an error message or run into an issue, please [open an issue](https://github.com/jacobschwantes/eight-ball-api/issues). This effort is valued and it will help the project improve.
+
+## Submit a feature request
+
+If you have an idea, or you're missing a capability that would make development easier and more robust, please [Submit feature request](https://github.com/jacobschwantes/eight-ball-api/issues).
