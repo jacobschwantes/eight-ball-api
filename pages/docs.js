@@ -34,7 +34,7 @@ const endpoints = [
       
       // More params...
     ],
-    example_request: "https://eightballapi.com/api/biased?q=will+i+win+the+lottery",
+    example_request: "https://eightballapi.com/api/biased?question=will+i+win+the+lottery",
     example_response: {
       reading: "It is decidedly so.",
       question: "will i win the lottery",
@@ -79,7 +79,7 @@ export default function Docs() {
                 1.0.0
               </span>
 
-              <code className="text-sm">Base URL: eightballapi.com/api</code>
+              <code className="text-sm">Base URL: https://eightballapi.com/api</code>
               <p>An API for getting random or biased fortune readings.</p>
               <a
                 href="mailto:contact@jacobschwantes.com"
