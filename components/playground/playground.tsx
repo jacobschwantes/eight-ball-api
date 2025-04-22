@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { CopyIcon, RefreshCwIcon, Globe, CheckIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -31,6 +31,15 @@ interface MockResponse {
 	[key: string]: unknown;
 }
 
+// Add interface for response metadata
+interface ResponseMetadata {
+	duration: number;
+	statusCode: number;
+	statusText: string;
+	timestamp: string;
+	headers: Record<string, string>;
+}
+
 type Endpoint = {
 	path: string;
 	method: "GET" | "POST";
@@ -54,9 +63,11 @@ export function Playground() {
 	const [isLoading, setIsLoading] = useState(false);
 	const [copiedEndpoint, setCopiedEndpoint] = useState(false);
 	const [selectedEndpoint, setSelectedEndpoint] = useState("random");
+	const [responseMetadata, setResponseMetadata] =
+		useState<ResponseMetadata | null>(null);
 	const jsonResponseRef = useRef<HTMLElement>(null);
 
-	const apiBaseUrl = "";
+	const apiBaseUrl = "https://eightballapi.com";
 
 	// Available locales
 	const locales = [
@@ -204,12 +215,34 @@ export function Playground() {
 
 		setIsLoading(true);
 		setResponse(null);
+		setResponseMetadata(null);
 
 		try {
 			const url = getFullEndpointUrl();
 
+			// Start timing the request
+			const startTime = performance.now();
+
 			// Make the actual API call
 			const response = await fetch(url);
+
+			// Calculate request duration
+			const endTime = performance.now();
+			const duration = endTime - startTime;
+
+			// Extract response metadata
+			const headers: Record<string, string> = {};
+			response.headers.forEach((value, key) => {
+				headers[key] = value;
+			});
+
+			setResponseMetadata({
+				duration,
+				statusCode: response.status,
+				statusText: response.statusText,
+				timestamp: new Date().toISOString(),
+				headers,
+			});
 
 			// Handle different response types
 			if (selectedEndpoint === "random" && !jsonOutput) {
@@ -449,7 +482,7 @@ export function Playground() {
 										Endpoint URL
 									</label>
 									<div className="relative mt-1">
-										<div className="w-full rounded-md bg-slate-50 dark:bg-slate-800 border p-2 text-sm font-mono overflow-hidden whitespace-nowrap text-ellipsis pr-10">
+										<div className="w-full rounded-md bg-slate-50 dark:bg-zinc-900 border p-2 text-sm font-mono overflow-hidden whitespace-nowrap text-ellipsis pr-10">
 											<div className="overflow-x-auto max-w-full pb-1">
 												{getFullEndpointUrl()}
 											</div>
@@ -472,6 +505,37 @@ export function Playground() {
 								<div className="p-4 flex-1 flex flex-col">
 									{response ? (
 										<div className="flex-1 flex flex-col">
+											{/* Display request metadata */}
+											{responseMetadata && (
+												<div className="bg-slate-50 dark:bg-[#2d2d2d] rounded-md p-4 text-xs">
+													<div className="flex justify-between items-center mb-2">
+														<div className="font-medium">Request Details</div>
+														<div className="text-muted-foreground">
+															{new Date(
+																responseMetadata.timestamp
+															).toLocaleTimeString()}
+														</div>
+													</div>
+													<div className="grid grid-cols-2 gap-x-4 gap-y-1">
+														<div className="text-muted-foreground">Status:</div>
+														<div
+															className={`${
+																responseMetadata.statusCode >= 200 &&
+																responseMetadata.statusCode < 300
+																	? "text-green-600 dark:text-green-400"
+																	: "text-red-600 dark:text-red-400"
+															}`}
+														>
+															{responseMetadata.statusCode}{" "}
+															{responseMetadata.statusText}
+														</div>
+														<div className="text-muted-foreground">
+															Duration:
+														</div>
+														<div>{responseMetadata.duration.toFixed(0)} ms</div>
+													</div>
+												</div>
+											)}
 											{selectedEndpoint === "random" && !jsonOutput ? (
 												<div className="px-4 py-6 text-center flex-1 flex items-center justify-center">
 													<div className="text-xl font-medium">
@@ -479,7 +543,7 @@ export function Playground() {
 													</div>
 												</div>
 											) : (
-												<div className="overflow-hidden rounded  text-sm">
+												<div className="overflow-hidden rounded text-sm">
 													<pre className="language-json max-h-[400px] overflow-y-auto">
 														<code
 															ref={jsonResponseRef}
