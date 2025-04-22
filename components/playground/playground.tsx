@@ -168,7 +168,7 @@ export function Playground() {
 	};
 
 	const getFullEndpointUrl = () => {
-		// Build the API URL based on the selected endpoint
+		// Build the API URL based on the selected endpoint with the full domain for display purposes
 		let apiPath = endpoints[selectedEndpoint].path;
 		const urlParams = new URLSearchParams();
 
@@ -202,6 +202,14 @@ export function Playground() {
 		return `${apiBaseUrl}${apiPath}${queryString}`;
 	};
 
+	// Get the relative URL path for making actual API requests
+	const getRequestUrl = () => {
+		// Extract just the path and query parameters without the domain
+		const fullUrl = getFullEndpointUrl();
+		// Remove the domain to get just the path
+		return fullUrl.replace(apiBaseUrl, "");
+	};
+
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
 
@@ -218,12 +226,13 @@ export function Playground() {
 		setResponseMetadata(null);
 
 		try {
-			const url = getFullEndpointUrl();
+			// Use the relative URL for making the actual API request
+			const url = getRequestUrl();
 
 			// Start timing the request
 			const startTime = performance.now();
 
-			// Make the actual API call
+			// Make the API call to relative path
 			const response = await fetch(url);
 
 			// Calculate request duration
