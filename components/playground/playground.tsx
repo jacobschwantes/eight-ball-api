@@ -88,13 +88,6 @@ export function Playground() {
 						"Language code for response localization (e.g., en, es, fr)",
 					required: false,
 				},
-				{
-					name: "json",
-					type: "boolean",
-					description:
-						"If enabled, returns a JSON object instead of plain text",
-					required: false,
-				},
 			],
 		},
 		categories: {
