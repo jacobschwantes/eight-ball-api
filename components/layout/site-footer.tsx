@@ -20,7 +20,7 @@ export function SiteFooter() {
 				</p>
 				<div className="flex gap-4">
 					<Link
-						href="https://github.com/jacobschwantes/eight-ball-api/tree/main"
+						href="https://github.com/jacobschwantes/eight-ball-api"
 						className="text-muted-foreground hover:text-foreground"
 					>
 						<GithubIcon className="h-5 w-5 text-muted-foreground hover:text-foreground" />

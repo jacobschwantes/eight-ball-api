@@ -11,7 +11,7 @@ export function ContactSection() {
 				API, feel free to reach out or check our GitHub repository for examples.
 			</p>
 			<div className="flex flex-col xs:flex-row gap-3">
-				<Link href="mailto:help@eightballapi.com">
+				<Link href="mailto:contact@eightballapi.com">
 					<Button variant="outline" size="sm" className="w-full xs:w-auto">
 						<MessageSquare className="mr-2 h-3 w-3 md:h-4 md:w-4" />
 						Contact Support
