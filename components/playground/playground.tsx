@@ -491,8 +491,8 @@ export function Playground() {
 										Endpoint URL
 									</label>
 									<div className="relative mt-1">
-										<div className="w-full rounded-md bg-slate-50 dark:bg-zinc-900 border p-2 text-sm font-mono overflow-hidden whitespace-nowrap text-ellipsis pr-10">
-											<div className="overflow-x-auto max-w-full pb-1">
+										<div className="w-full rounded-md bg-slate-50 dark:bg-zinc-900 border p-2 text-sm font-mono overflow-hidden text-ellipsis pr-10">
+											<div className="overflow-x-auto max-w-full pb-1 whitespace-pre-wrap break-all sm:break-normal sm:whitespace-nowrap">
 												{getFullEndpointUrl()}
 											</div>
 										</div>
@@ -525,7 +525,7 @@ export function Playground() {
 															).toLocaleTimeString()}
 														</div>
 													</div>
-													<div className="grid grid-cols-2 gap-x-4 gap-y-1">
+													<div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-1">
 														<div className="text-muted-foreground">Status:</div>
 														<div
 															className={`${
@@ -553,10 +553,10 @@ export function Playground() {
 												</div>
 											) : (
 												<div className="overflow-hidden rounded text-sm">
-													<pre className="language-json max-h-[400px] overflow-y-auto">
+													<pre className="language-json max-h-[400px] overflow-y-auto overflow-x-auto">
 														<code
 															ref={jsonResponseRef}
-															className="language-json"
+															className="language-json whitespace-pre-wrap break-all sm:break-normal sm:whitespace-pre"
 														>
 															{JSON.stringify(
 																response.plainText
