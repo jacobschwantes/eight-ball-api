@@ -14,75 +14,12 @@ sentiment-based responses.
 - Multi-language support
 - Edge runtime for optimal performance
 
-## API Endpoints
-
-### Random Response
-
-```
-GET /api
-```
-
-Returns a completely random 8-ball response.
-
-Query parameters:
-
-- `locale` (optional): Language code for responses (default: "en")
-
-Example response:
-
-```json
-{
-	"reading": "It is Certain.",
-	"locale": "en"
-}
-```
-
-### Biased Response
-
-```
-GET /api/biased
-POST /api/biased
-```
-
-Returns a response biased by the sentiment of the question and luck factor.
-
-Query/Body parameters:
-
-- `question` (required): The question to analyze
-- `lucky` (optional): Boolean to influence the bias (default: false)
-- `locale` (optional): Language code for responses (default: "en")
-
-Example response:
-
-```json
-{
-	"reading": "Outlook good.",
-	"question": "Will I win the lottery?",
-	"sentiment": {
-		/* sentiment analysis details */
-	},
-	"locale": "en",
-	"lucky": false
-}
-```
-
-### Additional Endpoints
-
-- `GET /api/positive` - Returns only positive responses
-- `GET /api/negative` - Returns only negative responses
-- `GET /api/neutral` - Returns only neutral responses
-- `GET /api/categories` - Returns all responses grouped by category
-
-## Supported Languages
-
-The API supports multiple languages with localized 8-ball responses.
-
 ## Getting Started
 
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/your-username/eight-ball-api.git
+git clone https://github.com/jacobschwantes/eight-ball-api.git
 cd eight-ball-api
 ```
 
