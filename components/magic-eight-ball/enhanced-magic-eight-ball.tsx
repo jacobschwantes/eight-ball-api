@@ -223,7 +223,7 @@ export function EnhancedMagicEightBall() {
 			</div>
 
 			{/* Question input - now as a separate component below the ball for better layout */}
-			<div className="w-full max-w-xs sm:max-w-sm md:max-w-md -mt-14">
+			<div className="w-full max-w-xs sm:max-w-sm -mt-14">
 				<form onSubmit={handleSubmit} className="space-y-2">
 					<div className="relative">
 						<Input

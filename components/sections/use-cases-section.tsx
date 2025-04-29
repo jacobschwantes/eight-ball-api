@@ -4,7 +4,7 @@ export function UseCasesSection() {
 	return (
 		<section
 			id="use-cases"
-			className="w-full py-16 md:py-24 lg:py-32 bg-gradient-to-b from-white to-purple-50 dark:from-black dark:to-purple-950/20"
+			className="w-full py-16 md:py-24 lg:py-32 bg-gradient-to-b from-purple-100/70 to-slate-50 dark:from-purple-950/30 dark:to-slate-900/20"
 		>
 			<div className="container px-4 md:px-6 mx-auto">
 				<div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">

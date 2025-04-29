@@ -11,7 +11,7 @@ import { EnhancedMagicEightBall } from "../magic-eight-ball/enhanced-magic-eight
 
 export function HeroSection() {
 	return (
-		<section className="w-full py-8 md:py-16 lg:py-24 bg-gradient-to-b from-background to-purple-50 dark:to-purple-950/20 overflow-hidden relative">
+		<section className="w-full py-8 md:py-16 lg:py-24 bg-gradient-to-b from-background to-purple-100/70 dark:to-purple-950/30 overflow-hidden relative">
 			{/* Magical background elements */}
 			<div className="absolute inset-0 overflow-hidden">
 				<div className="absolute -top-10 -left-10 w-32 h-32 md:w-40 md:h-40 bg-purple-500/10 rounded-full blur-3xl"></div>
