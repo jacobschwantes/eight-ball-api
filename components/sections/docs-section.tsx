@@ -49,7 +49,13 @@ const categoriesResponse = `{
 }`;
 
 // Biased endpoint
-const biasedCode = `fetch('https://eightballapi.com/api/biased?question=Will+I+succeed&lucky=true')
+const biasedCode = `fetch('https://eightballapi.com/api/biased', {
+	method: 'POST',
+	headers: {
+		'Content-Type': 'application/json',
+	},
+	body: JSON.stringify({ question: 'Will I succeed?', lucky: true }),
+})
 .then(response => response.json())
 .then(data => {
   console.log(data.reading); // "Outlook good"
