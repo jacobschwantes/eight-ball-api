@@ -1,4 +1,4 @@
-export const runtime = "edge";
+// ;
 export const dynamic = "force-dynamic";
 import { biasedResponse } from "@/lib/eight-ball";
 import { NextResponse } from "next/server";

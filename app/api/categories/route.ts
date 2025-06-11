@@ -1,4 +1,4 @@
-export const runtime = "edge";
+// ;
 import { NextResponse } from "next/server";
 import { getLocalizedResponses } from "@/lib/localization/responses";
 
