@@ -53,6 +53,12 @@ type Endpoint = {
 	}[];
 };
 
+async function timedFetch(url: string) {
+	const start = performance.now();
+	const response = await fetch(url);
+	return { response, duration: performance.now() - start };
+}
+
 export function Playground() {
 	const [question, setQuestion] = useState("");
 	const [category, setCategory] = useState("positive");
@@ -229,15 +235,7 @@ export function Playground() {
 			// Use the relative URL for making the actual API request
 			const url = getRequestUrl();
 
-			// Start timing the request
-			const startTime = performance.now();
-
-			// Make the API call to relative path
-			const response = await fetch(url);
-
-			// Calculate request duration
-			const endTime = performance.now();
-			const duration = endTime - startTime;
+			const { response, duration } = await timedFetch(url);
 
 			// Extract response metadata
 			const headers: Record<string, string> = {};

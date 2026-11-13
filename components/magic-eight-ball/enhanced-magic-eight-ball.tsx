@@ -12,6 +12,18 @@ interface Sparkle {
 	top: number;
 	size: number;
 	duration: number;
+	opacity: number;
+}
+
+function createSparkle(): Sparkle {
+	return {
+		id: Math.random(),
+		left: Math.random() * 100,
+		top: Math.random() * 100,
+		size: Math.random() * 10 + 2,
+		duration: Math.random() * 2 + 1,
+		opacity: Math.random() * 0.7 + 0.3,
+	};
 }
 
 export function EnhancedMagicEightBall() {
@@ -26,14 +38,7 @@ export function EnhancedMagicEightBall() {
 	useEffect(() => {
 		const sparkleInterval = setInterval(() => {
 			if (sparkles.length < 15) {
-				const newSparkle = {
-					id: Math.random(),
-					left: Math.random() * 100,
-					top: Math.random() * 100,
-					size: Math.random() * 10 + 2,
-					duration: Math.random() * 2 + 1,
-				};
-				setSparkles((prev) => [...prev, newSparkle]);
+				setSparkles((prev) => [...prev, createSparkle()]);
 			}
 		}, 300);
 
@@ -56,13 +61,7 @@ export function EnhancedMagicEightBall() {
 		setAnswer("Revealing your destiny...");
 
 		// Add extra sparkles during shake
-		const extraSparkles = Array.from({ length: 10 }, () => ({
-			id: Math.random(),
-			left: Math.random() * 100,
-			top: Math.random() * 100,
-			size: Math.random() * 10 + 2,
-			duration: Math.random() * 2 + 1,
-		}));
+		const extraSparkles = Array.from({ length: 10 }, createSparkle);
 
 		setSparkles((prev) => [...prev, ...extraSparkles]);
 
@@ -106,7 +105,7 @@ export function EnhancedMagicEightBall() {
 							key={sparkle.id}
 							className="absolute rounded-full bg-white"
 							initial={{ opacity: 0, scale: 0 }}
-							animate={{ opacity: Math.random() * 0.7 + 0.3, scale: 1 }}
+							animate={{ opacity: sparkle.opacity, scale: 1 }}
 							exit={{ opacity: 0, scale: 0 }}
 							transition={{ duration: sparkle.duration }}
 							style={{
